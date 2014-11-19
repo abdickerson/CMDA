@@ -19,3 +19,30 @@ print(groups)
 #Setosa occupies the first cluster
 #virginica occupies the second cluster
 #versicolor occupies the third cluster
+
+#InClass10_2
+
+kmeans_clusters <- kmeans(distance, 5 , nstart=100, iter.max=100)
+kmeans_clusters
+kmeans_clusters$cluster
+kmeans_clusters$centers
+
+kmeans_clusters$withinss
+kmeans_clusters$tot.withinss
+kmeans_clusters$betweenss
+
+kmeans_clusters$size
+
+compare <- cbind(groups,kmeans_clusters$cluster)
+compare <- as.data.frame(compare)
+compare <- cbind(iris$Species,compare)
+names(compare) <- c("Species", "Hierarchical", "kmeans")
+compare
+
+compare1 <- compare[order(compare$Hierarchical),]
+compare1
+compare2 <- compare[order(compare$kmeans),]
+compare2
+#There are not any major differences in the iris plant assignments to the three different
+#clusters. I wouldn't say the clusters are perfectly separated, but it is pretty
+#accurate to the known Species separation.
